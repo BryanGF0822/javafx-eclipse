@@ -10,7 +10,7 @@ public class Moon {
 	
 	public Moon(double xx, double rr) {
 		x = xx;
-		r = rr;
+		r = rr * 2;
 	}
 	
 	public double getX() {
@@ -28,8 +28,14 @@ public class Moon {
 	public void move(boolean dr) {
 		if(dr) {
 			x += STEP_MOVE;
+			if(x > max + 20) {
+				x = 0;
+			}
 		} else {
 			x -= STEP_MOVE;
+			if(x < 0) {
+				x = max;
+			}
 		}
 	}
 	

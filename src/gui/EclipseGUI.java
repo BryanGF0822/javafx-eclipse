@@ -33,7 +33,6 @@ public class EclipseGUI {
     		public void run() {
     			while(movingLeft) {
     				mn.move(true);
-    				
     				Platform.runLater(new Thread() {
     					public void run() {
     						updateMoon(mn.getX());
@@ -52,7 +51,28 @@ public class EclipseGUI {
 
     @FXML
     void moveRightBtn(ActionEvent event) {
-
+    	mn.setMax(window.getWidth());
+    	movingLeft = false;
+    	new Thread() {
+    		public void run() {
+    			while(!movingLeft) {
+    				mn.move(false);
+    				Platform.runLater(new Thread() {
+    					public void run() {
+//    						if(mn.getX() < window.getWidth() + 20) {
+//    							circleShape.relocate(646, 92);
+//    						}
+    						updateMoon(mn.getX());
+    					}
+    				});
+    				try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+    			}
+    		}
+    	}.start();
     }
     
     public void updateMoon(double x) {
