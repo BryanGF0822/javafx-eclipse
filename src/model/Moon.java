@@ -24,7 +24,8 @@ public class Moon {
 		return max;
 	}
 	
-	public void move(boolean dr) {
+	
+	public void move1(boolean dr) {
 		if(dr) {
 			x += STEP_MOVE;
 			if(x > max + r) {
